@@ -33,12 +33,13 @@ class GradientBoostingClassifierPure:
                 est_ = convert_estimator(est)
                 est_arr_.append(est_)
             self.estimators_.append(est_arr_)
-        if hasattr(estimator, "init_"):
-            self.init_ = convert_estimator(estimator.init_)
+        # if hasattr(estimator, "init_"):
+        #     print(f"estimator {estimator}")
+        #     self.init_ = convert_estimator(estimator.init_)
         self.loss = estimator.loss
         self.learning_rate = estimator.learning_rate
         self.n_features_ = estimator.n_features_
-        if self.loss == "deviance":
+        if self.loss in ("deviance", "log_loss"):
             self.loss_ = (
                 _MultinomialDeviancePure(len(self.classes_))
                 if len(self.classes_) > 2

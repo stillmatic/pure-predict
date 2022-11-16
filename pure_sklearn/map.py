@@ -11,11 +11,13 @@ MAPPING = {
     "LinearSVC": "pure_sklearn.svm.LinearSVCPure",
     "DecisionTreeClassifier": "pure_sklearn.tree.DecisionTreeClassifierPure",
     "DecisionTreeRegressor": "pure_sklearn.tree.DecisionTreeRegressorPure",
+    "DecisionTreeRegressor": "pure_sklearn.tree.DecisionTreeRegressorPure",
     "ExtraTreeClassifier": "pure_sklearn.tree.ExtraTreeClassifierPure",
     "ExtraTreeRegressor": "pure_sklearn.tree.ExtraTreeRegressorPure",
     "RandomForestClassifier": "pure_sklearn.ensemble.RandomForestClassifierPure",
     "BaggingClassifier": "pure_sklearn.ensemble.BaggingClassifierPure",
     "GradientBoostingClassifier": "pure_sklearn.ensemble.GradientBoostingClassifierPure",
+    "PMMLGradientBoostingClassifier": "pure_sklearn.ensemble.GradientBoostingClassifierPure",
     "XGBClassifier": "pure_sklearn.xgboost.XGBClassifierPure",
     "ExtraTreesClassifier": "pure_sklearn.ensemble.ExtraTreesClassifierPure",
     "GaussianNB": "pure_sklearn.naive_bayes.GaussianNBPure",
@@ -51,7 +53,7 @@ def convert_estimator(est, min_version=None):
     pure_est_name = MAPPING.get(est_name)
     if pure_est_name is None:
         raise ValueError(
-            "Cannot find 'pure_sklearn' counterpart for {}".format(est_name)
+            f"Cannot find 'pure_sklearn' counterpart for {est}, as class {est.__class__}, lookup as {est_name}"
         )
     module = ".".join(pure_est_name.split(".")[:-1])
     name = pure_est_name.split(".")[-1]

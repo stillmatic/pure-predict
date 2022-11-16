@@ -44,7 +44,7 @@ class _DecisionTreeBase:
             self.children_left_ = estimator.tree_.children_left.tolist()
             self.children_right_ = estimator.tree_.children_right.tolist()
             self.feature_ = estimator.tree_.feature.tolist()
-            self.threshold_ = estimator.tree_.threshold.tolist()
+            self.threshold_ = estimator.tree_.threshold
             self.value_ = [a[0] for a in estimator.tree_.value.tolist()]
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
